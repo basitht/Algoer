@@ -1,0 +1,204 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Parisienne&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('../../Images/tmg-slideshow_l.jpg');
+            background-repeat: no-repeat;
+            background-size: 1500px 600px;
+            margin: 0;
+            padding: 0;
+            /*font-family: 'Exo 2', sans-serif;*/
+        }
+        nav {
+            justify-content:center;
+            align-items:center;
+                   
+        }
+        .logo h2{
+            font-size:29px;
+            font-weight:bold;
+            color:white;
+            letter-spacing:3px;
+            text-decoration:none;
+            float:left;
+            text-transform:uppercase;
+            padding:0 20px;
+            font-family: 'Exo 2', sans-serif;
+        }
+        .navlinks {
+            width:59%;
+            display:flex;
+            justify-content:space-around;
+            float:right;
+            line-height:85px;
+             font-family: 'Exo 2', sans-serif;
+        }
+        .navlinks li{
+             list-style:none;
+        }
+        .navlinks a{
+            color:white;
+            letter-spacing:2px;
+            font-size:18px;
+            text-decoration:none;
+            padding:0 30px;
+            text-transform:uppercase;
+            transition:0.4s;
+            font-weight:bold;
+            
+        }
+        .navlinks a:hover{
+             color:#eff6cc;
+        }
+        .title h3{
+            font-size:60px;
+            font-family: 'Parisienne', cursive;
+            font-weight:bold;
+            letter-spacing:3px;
+            color:white;
+            position:absolute;
+            top: 180px;
+            left:40px;
+        }
+
+        #a {
+            width: 350px;
+            height: 290px;
+            font-size:18px;
+            position:absolute;
+            bottom:120px;
+            left:180px;
+        }
+        #about {
+            background-color:#f8f1f1;
+            height: 75%;
+            width:100%;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 600px;
+        }
+       .h-box h4 {
+            color: black;
+            letter-spacing:5px;
+            font-weight:bold;
+            background: none;
+            font-family: 'Exo 2', sans-serif;
+            position: absolute;
+            top: 50px;
+            left: 550px;
+            font-size: 28px;
+            
+        }
+        .p-box p{
+            font-size:38px;
+            color:black;
+            margin-left:355px;
+            margin-right:355px;
+            letter-spacing:2px;
+            background: none;
+             font-family: 'Parisienne', cursive;
+             position:absolute;
+            top:120px;
+           
+        }
+         #contact {
+            /*background-color:#f8f1f1;*/
+            height: 75%;
+            width:100%;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 600px;
+        }
+       .c-box h4 {
+            color: black;
+            letter-spacing:5px;
+            font-weight:bold;
+            background: none;
+            font-family: 'Exo 2', sans-serif;
+            position: absolute;
+            top: 500px;
+            left: 460px;
+            font-size: 28px;
+            
+        }
+        .c1-box p{
+            font-size:38px;
+            color:black;
+            margin-left:355px;
+            margin-right:355px;
+            letter-spacing:2px;
+            background: none;
+             font-family: 'Parisienne', cursive;
+             position:absolute;
+            top:580px;
+           
+        }
+        /*button {
+            color:white;
+            font-weight:bold;
+            letter-spacing:2px;
+            background: none;
+            border: 1px solid white;
+            position: relative;
+            left: 440px;
+            top: 260px;
+           
+       }    
+       button:hover{
+          color:#eff6cc;
+          transition:0.4s;
+       }*/        
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <h2>SafeSpot</h2>
+        </div>
+        <ul class="navlinks">
+            <li><a href="../reg/Home">Home</a></li>
+            <li><a href="../reg/Register">Register</a></li>
+            <li><a href="../reg/Login">Login</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+    <div class="title">
+        <h3>Let's Find you a <br />Space </h3>
+    </div>
+    @*<div id="c"><a href="#contact">Contact Us</a> </div>*@
+    <div id="about">
+        <div class="h-box">
+            <h4>ABOUT US</h4>
+        </div>
+        <div class="p-box">
+            <p>SafeSpot Allows you to shop for, reserve and pre-pay for a parking spot near your destination. This Website claims to have 850,000 monthly users, and originally focused on helping drivers find parking at Thrissur Town</p>
+        </div>
+    </div>
+    <div id="contact">
+        <div class="c-box">
+            <h4>Keep in Touch with us</h4>
+        </div>
+        <div class="c1-box">
+            <p>Contact: 00917548632158<br />Email: info@safespot.com</p>
+        </div>
+    </div>
+</body>
+</html>

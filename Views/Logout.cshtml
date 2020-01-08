@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Logout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Logout</h2>
+<div class="container">
+    <section>
+        <div class="col-md-12" style="padding-left:15%; padding-right:15%;">
+            <div class="row">
+                <h3>
+                    Signing Out...
+                </h3>
+                <b>
+                    Please wait......
+                </b>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script>
+
+    function preventBack() {
+        window.history.forward(-1);
+        window.location.href = "/";
+
+    }
+    setTimeout(preventBack, 0);
+    window.onload=function()
+    {
+        setTimeout(preventBack, 0);
+    }
+
+</script>
