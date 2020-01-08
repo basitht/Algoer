@@ -1,2 +1,2 @@
 # SafeSpot
-Website 
+Website to find nearby Parkingslots
