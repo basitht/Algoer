@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Userpage</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+        <style>
+            .form{
+                position:absolute;
+                top:160px;
+                left:630px;
+            }
+            .fed-box h2{
+                 font-family: 'Exo 2', sans-serif;
+                 text-align:center;
+                 letter-spacing:3px;
+                 font-size:40px;
+            }
+            .text-box textarea{
+                height: 170px;
+                padding: 12px 20px;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                background-color: #f8f8f8;
+                resize: none;
+            }
+            .btn{
+                width:50%;
+            }
+        </style>
+</head>
+<body>
+    <form action="../user/Feedback" method="post">
+        <div class="form">
+            <div class="fed-box">
+                <h2>Feedback</h2><br />
+            </div>
+            <div class="text-box">
+                <input type="text" class="form-control" name="username" placeholder="Username" /><br />
+            </div>
+            <div class="text-box">
+                <textarea class="form-control" name="message" placeholder="Your feedback" ></textarea><br /><br />
+            </div>
+            <center>
+                <input type="submit" class="btn" value="Submit" />
+            </center>
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    <label class="label-success">
+                        @ViewBag.s
+                    </label>
+                    <label class="label-danger">
+                        @ViewBag.f
+                    </label>
+                </div>
+            </div>
+        </div>   
+</form>
+</body>
+</html>

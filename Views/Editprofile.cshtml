@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "profile";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>profile</h2>
+@using SafeSpot.Model;
+@{
+    db_SafeSpotEntities6 db = new db_SafeSpotEntities6();
+    ViewBag.Title = "Editprofile";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    String id = Session["username"].ToString();
+    var reg = db.tb_reg.Where(t => t.username == id).FirstOrDefault();
+}
+
+<div class="container">
+    <div></div>
+    <div class="margintop">
+        <form id="form1" action="/user/Editprofile" method="post">
+            <table align="center">
+                <tr>
+                    <td class="td1">
+                        <label>Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="name" name="name" value="@reg.name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1">
+                        <label>Phone No:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="phone" name="phone" value="@reg.phone_no" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1">
+                        <label>Mail Id:</label>
+                    </td>
+                    
+                    <td>
+                        <input type="text" id="mail" name="mail" value="@reg.gmail" />
+                    </td>
+                   
+                </tr>
+                <tr>
+                    <td class="td1">
+                        <label>Username:</label>
+                    </td>
+                    <td>
+                        <label>@reg.username</label>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="td1">
+                        <label>Password:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="password" name="password" value="@reg.password" />
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" id="btnsubmit" name="btnsubmit" value="Done" />
+                    </td>
+                </tr>
+            </table>
+         </form>
+    </div>
+</div>
+

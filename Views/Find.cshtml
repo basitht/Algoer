@@ -1,0 +1,160 @@
+﻿@model IEnumerable<SafeSpot.Model.tb_freeslot>
+
+@{
+    ViewBag.Title = "Find";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    SafeSpot.Model.db_SafeSpotEntities6 db = new SafeSpot.Model.db_SafeSpotEntities6();
+    var free = db.tb_freeslot.ToList();
+    //int id = ViewBag.userid;
+    //db.tb_findspace.Where(e => e.fs_id == id).FirstOrDefault();
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<html>
+<body>
+
+    <div id="map"> </div>
+    @*<div class="try">
+            <p>Click the button to get your coordinates.</p>
+
+            <button onclick="getLocation()">Try It</button>
+            <p id="demo"></p>
+        </div>*@
+
+    <style>
+        #map {
+            height: 550px;
+            width: 900px;
+            position: absolute;
+            left: 0;
+            top: 78px;
+        }
+
+        .form {
+            position: absolute;
+            top: 160px;
+            left: 1030px;
+        }
+
+        .text-box {
+            width: 100%;
+            overflow: hidden;
+            padding: 8px 0;
+            margin: 8px 0;
+        }
+        
+</style>
+
+    <script>
+        var map, infowindow;
+
+        var x = document.getElementById("demo");
+
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 10.523900, lng: 76.212250 },
+                zoom: 13
+            });
+            @foreach(var item in free)
+                {
+                <text>
+            var infowindow = new google.maps.InfoWindow();
+            var marker = new google.maps.Marker({
+                map: map,
+                position: { lat: @item.Lat_infree, lng: @item.Long_infree },
+                title: '<b>@item.sllotinfree_name <br> Slots for car : @item.car_freeslot<br> Slots for bikes : @item.bike_freeslot</b>'
+            });
+            google.maps.event.addListener(marker,'mouseover', function() {
+                infowindow.setContent(this.title);
+                infowindow.open(map, this);
+            });
+            google.maps.event.addListener(marker,'mouseout', function() {
+                infowindow.close();
+            });
+            </text>
+                }
+
+            infoWindow = new google.maps.InfoWindow;
+            marker = new google.maps.Marker;
+            //  HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    //debugger;
+                    var pos = {
+
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    document.getElementById('geo').value = pos.lat;
+                    document.getElementById('geo1').value = pos.lng;
+
+                    google.maps.event.addListener(marker,'click', function() {
+                        infowindow.setContent('Your Location.');
+                        infowindow.open(map, this);
+                    });
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location Found');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+
+                }, function() {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        
+</script>
+ 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNKM7U-FRBfd6BfD3UwfRQRRpSgu2TsiU&callback=initMap"
+        async="" defer="defer" type="text/javascript"></script>
+
+<form action="../user/Find" name="find" id="find" method="post">
+       <div class="form">
+        <div class="text-box">
+            Your Location Lattitude:
+            <input class="form-control" type="text" id="geo" name="getgeo" />
+        </div>
+        <div class="text-box">Your Location Longiitude:   
+        <input class="form-control" type="text" id="geo1" name="getgeo1" />
+        </div>
+        <div class="text-box">
+            When will you be arriving?
+            <input class="form-control" type="date" placeholder="When will you be arriving?" name="arrival-time" value="" />
+            <input class="form-control" type="time" placeholder="When will you be arriving?" name="arrival-time" value="" />
+        </div>
+        <div class="text-box">
+            <input class="form-control" type="text" placeholder="Vehicle Model" name="vehicle-type" value="" />
+        </div>
+        <div class="text-box">
+            <input class="form-control" type="text" placeholder="Vehicle Color" name="color" value="" />
+        </div>
+       
+            @*Point 1: <input type="text" name="point1" id="point1" placeholder="lat1,lon1" />
+            Point 2: <input type="text" name="point2" id="point2" placeholder="lat2,lon2" />
+            <button type="button" id="calc-dist">Calculate distance</button>
+            <output id="result-distance"></output>*@
+       
+        <div>
+             <input class="btn" id="btn1"  type="submit" name="find" value="Find a space" />
+            <input id="Reset1" class="btn" type="reset" value="Cancel" />
+            @*<output id="result" name="result"></output>*@
+        </div>
+
+        <div>
+            <div id="dvDistance"></div>
+            <label class="success">
+                @ViewBag.s
+            </label>
+            <label class="danger">
+                @ViewBag.f
+            </label>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

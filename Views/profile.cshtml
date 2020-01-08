@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>profile</h2>
+@using SafeSpot.Model;
+@{
+    db_SafeSpotEntities6 db = new db_SafeSpotEntities6();
+
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    String id = ViewBag.userid;
+
+   var reg = db.tb_reg.Where(t => t.username == id).FirstOrDefault();
+
+}
+
+<div class="container">
+    <div class="margintop">
+        <table align="center">
+            <tr>
+                <td class="td1">
+                    <label>Name:</label>
+                </td>
+                <td>
+                    <label>@reg.name</label>
+                </td>
+            <tr>
+                <td class="td1">
+                    <label>Phone No:</label>
+                </td>
+                <td>
+                    <label>@reg.phone_no</label>
+                </td>
+            <tr>
+                <td class="td1">
+                    <label>Mail Id:</label>
+                </td>
+                <td>
+                    <label>@reg.gmail</label>
+                </td>
+            <tr>
+                <td class="td1">
+                    <label>Username:</label>
+                </td>
+                <td>
+                    @*@{
+                        Int32 username_id = Convert.ToInt32(reg.id);
+                        tb_reg getusername = db.tb_reg.Where(k => k.id == username_id).FirstOrDefault();
+
+                    }*@
+                    <label>@reg.username</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1">
+                    <label>Password:</label>
+                </td>
+                <td>
+                   <label>@reg.password</label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("Editprofile","user")'" class="btn btn-default">Edit Profile</button>
+                </td>
+            </tr>
+        </table>
+        <div>
+            @Html.ActionLink("Back to Home", "Userhome")
+        </div>
+    </div>
+</div>
+

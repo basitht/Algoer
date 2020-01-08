@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewBag.Title = "Userhome";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Userpage</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        .body{
+            font-family: 'Poppins', sans-serif;
+        }
+        .find{
+            display: inline-block;
+            margin:20px;
+            position:absolute;
+            width:100%;
+            height:auto;
+            max-width:13px;
+            max-height:9px;
+            top:55px;
+            left:40px;
+        }
+        .find img{
+             vertical-align: top;
+        }
+        .find p{
+          position:absolute;
+          left:140px;
+          top:210px;
+          font-family: 'Poppins', sans-serif;
+          letter-spacing:3px;
+        }
+        .find figure:hover, .book figure:hover, .view figure:hover, .payment figure:hover, .feedback figure:hover, .logout figure:hover{
+            -ms-transform: scale(1.5); /* IE 9 */
+            -webkit-transform: scale(1.5); /* Safari 3-8 */
+            transform: scale(1.1);
+             transition: transform .8s;
+             width: 10px;
+             height: 10px;
+             margin: 0 auto;  
+        }
+        .book{
+            display: inline-block;
+            margin:20px;
+            position:absolute;
+            width:100%;
+            height:auto;
+            max-width:53px;
+            max-height:43px;
+            top:55px;
+            left:480px;
+        }
+        .book img{
+             vertical-align: top;
+        }
+        .book p{
+          position:absolute;
+          left:160px;
+          top:210px;
+          font-family: 'Poppins', sans-serif;
+          letter-spacing:3px;
+          
+        }
+       
+        .view{
+            display: inline-block;
+            margin:20px;
+            position:absolute;
+            width:100%;
+            height:auto;
+            max-width:63px;
+            max-height:53px;
+            top:55px;
+            right:353px;
+        }
+        .view img{
+             vertical-align: top;
+        }
+        .view p{
+          position:absolute;
+          left:160px;
+          top:210px;
+          text-align: center;
+          font-family: 'Poppins', sans-serif;
+          letter-spacing:3px;
+        }
+       
+        .payment {
+            display: inline-block;
+            /*margin:20px;*/
+            position:absolute;
+            width:100%;
+            height:auto;
+            max-width:63px;
+            max-height:53px;
+            top: 360px;
+            right: 1180px;
+        }
+        .payment img{
+             vertical-align: top;
+        }
+        .payment p{
+          position:absolute;
+          left:80px;
+          top: 190px;
+          text-align: center;
+          font-family: 'Poppins', sans-serif;
+          letter-spacing:3px;
+        }
+         .feedback {
+            display: block;
+            /*margin:20px;*/
+            position:absolute;
+            width:auto;
+            height:auto;
+            max-width:130px;
+            max-height:55px;
+            top: 410px;
+            left: 640px;
+        }
+        .feedback img{
+             vertical-align: top;
+        }
+        .feedback p{
+          position:absolute;
+          left:25px;
+          top: 155px;
+          text-align: center;
+          font-family: 'Poppins', sans-serif;
+          letter-spacing:3px;
+        }
+         .logout {
+            display: block;
+            /*margin:20px;*/
+            position:absolute;
+            width:auto;
+            height:auto;
+            max-width:50px;
+            max-height:25px;
+            top: 410px;
+            right:250px;
+        }
+        .logout img{
+             vertical-align: top;
+        }
+        .logout p{
+          position:absolute;
+          left:25px;
+          top: 155px;
+          text-align: center;
+          font-family: 'Poppins', sans-serif;
+          letter-spacing:3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="find">
+        <figure>
+            <a href="Find"><img src="~/Images/recherche-parking-effia_1.png" /></a>
+            <p><b> Find a Space</b></p>
+        </figure>
+    </div>
+    <div class="book">
+        <figure>
+            <a href="Bookparking" ><img src="~/Images/modification-reservation-parking-effia_0.png" /></a>
+            <p><b>Book Parking</b></p>
+        </figure>
+    </div>
+    <div class="view">
+        <figure>
+            <a href="Viewparking"><img src="~/Images/place-dediee-parking-effia_1.png" /></a>
+            <p><b>View Parking</b></p>
+        </figure>
+    </div>
+    <div class="payment">
+        <figure>
+            <a href="Payment"><img src="~/images/payment.png" /> </a>
+            <p><b>Make Payment</b></p>
+        </figure>
+    </div>
+    <div class="feedback">
+        <figure>
+            <a href="Feedback">
+             <img width="130" height="130" src="~/images/feedback-img.png" /></a>
+        <p><b>Customer feedback</b></p>
+    </figure>
+</div> 
+    <div class="logout">
+        <figure>
+            <a href="../../reg/Logout"> <img width="130" height="130" src="~/images/logout-rounded-down--v2.png" /></a>
+            <p><b>Logout</b></p>
+        </figure>
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Register")
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>
+
+

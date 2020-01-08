@@ -1,0 +1,61 @@
+﻿
+
+@{
+    ViewBag.Title = "Viewparking";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    SafeSpot.Model.db_SafeSpotEntities6 db = new SafeSpot.Model.db_SafeSpotEntities6();
+
+    String id = ViewBag.userid;
+
+    var getbooking = db.tb_booking.Where(t => t.username == id).FirstOrDefault();
+}
+
+<h2>Viewparking</h2>
+<div class="container">
+    <div class="margintop">
+        <table align="center">
+            <tr>
+                <td class="td1">
+                    <label>Slot:</label>
+                </td>
+                <td>
+                    <label>@getbooking.slot</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1">
+                    <label>Vehicle No:</label>
+                </td>
+                <td>
+                    <label>@getbooking.vehicle_no</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1">
+                    <label>Duration:</label>
+                </td>
+                <td>
+                    <label>@getbooking.duration</label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("Make Payment","user")'" class="btn btn-default">Make Payment</button>
+                </td>
+            </tr>
+        </table>
+        <div class="form-group">
+
+            <div class="col-md-10">
+                <label class="label-success">
+                    @ViewBag.s
+                </label>
+                <label class="label-danger">
+                    @ViewBag.f
+                </label>
+            </div>
+        </div>
+        @Html.ActionLink("Back To Home", "Userthome")
+    </div>
+</div>

@@ -1,0 +1,175 @@
+﻿@model IEnumerable<SafeSpot.Model.tb_freeslot>
+@{
+    ViewBag.Title = "Route";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    SafeSpot.Model.db_SafeSpotEntities6 db = new SafeSpot.Model.db_SafeSpotEntities6();
+
+    var getaddress = db.tb_freeslot.ToList();
+    string geo = ViewBag.g;
+    string geo1 = ViewBag.h;
+   
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div id="map"> </div>
+<style>
+    #map {
+        height: 450px;
+        width: 1340px;
+        position: absolute;
+        left: 0;
+        top: 80px;
+    }
+    #results {
+        position: absolute;
+        top: 530px;
+        left:180px;
+        background: gold;
+    }
+    .navigate{
+        position:absolute;
+        top:590px;
+        left:1230px;
+    }
+    </style>
+    <script >
+
+        var map;
+        var geocoder;
+        var origin = { lat: @geo, lng: @geo1};
+        //"IIIrd Floor, Bhuhari Tower, Sankarayya Jn, M G Road, Kuttipuzha Nagar, Poothole, Thrissur, Kerala 680004"
+
+        var destinations = ["Railway Station West Parking Area, Railway Station West Entry Rd, Poothole, Thrissur, Kerala 680021",
+                            "ion digital zone iDZ Parking, 709, MG Road, Kuttipuzha Nagar, Poothole, Thrissur, Kerala 680667",
+                            "Muncipal Pay and Park Area , Veliyannur, Thrissur, Kerala 680001",
+                            "Paramekkav Temple Vehicle Parking Area, 14, Palace Rd, Keerankulangara, Thrissur, Kerala 680020",
+                            "The Garuda Parking Lot, 3, Kuruppam Rd, Kuruppam, Thekkinkadu Maidan, Thrissur, Kerala 680001",
+                            "Pay and Park Kuruppam Road, Kodungallur - Shornur Rd, Marar Road Area, Thrissur, Kerala 680001",
+                            "Basilica parking area, Erinjery Angady, Pallikkulam, Thrissur, Kerala 680001",
+                            "Patturaikkal Press Club Road Pay & Park, 9, Press Club Rd, Patturaikkal, Thrissur, Kerala 680020",
+                            "Naikkanal MG Road Pay & Park, 1, MG Road, Marar Road Area, Naikkanal, Thrissur, Kerala 680020",
+                            "Opposite Volga Bar Pay & Park, Opposite Volga Bar, Post Office Road, &, Mannadiar Ln, Thrissur, Kerala 680001"];
+        @*@foreach(var item in getaddress)
+        {
+            <text>
+               var destinations = [{lat:@item.Lat_infree, lng:@item.Long_infree}];
+            </text>
+        }*@
+                           
+        var directionsDisplay;
+        var directionsService;
+
+        function CalculateDistance(){
+            //debugger;
+
+            var service = new google.maps.DistanceMatrixService();
+            service.getDistanceMatrix({
+                origins: [origin], //array of origins
+                destinations: destinations, //array of destinations
+                travelMode: google.maps.TravelMode.DRIVING,
+                unitSystem: google.maps.UnitSystem.METRIC,
+                avoidHighways: false,
+                avoidTolls: false
+            }, callback);
+        }
+        function callback(response, status) {
+
+            if (status != google.maps.DistanceMatrixStatus.OK) {
+                alert('Error was: ' + status);
+            } else {
+
+                //we only have one origin so there should only be one row
+                var routes = response.rows[0];
+
+                //need to find the shortest
+                var lowest = Number.POSITIVE_INFINITY;
+                var tmp;
+                var shortestRouteIdx = -1;
+                var resultText = "<b>Possible Routes: <br/>" ;
+                for (var i = routes.elements.length - 1; i >= 0; i--) {
+                    //do  we got a result for the element?
+                    if (routes.elements[i].status === google.maps.DistanceMatrixElementStatus.OK) {
+                        tmp = routes.elements[i].duration.value;
+                        resultText += "<b>" + "Route: " + destinations[i] + ": " + tmp + "m" + "<br/>";
+                        if (tmp < lowest) {
+                            lowest = tmp;
+                            shortestRouteIdx = i;
+                        }
+                    }
+                }
+                //log the routes and duration.
+                document.getElementById('results').innerHTML = resultText;
+                if (shortestRouteIdx > -1) {
+                    //get the shortest route
+                    var shortestRoute = destinations[shortestRouteIdx];
+                    //now we need to map the route.
+                    calculateRoute(origin, shortestRoute)
+                } else {
+                    alert('no route available');
+
+                }
+
+            }
+        }
+        //Calculate the route of the shortest distance we found.
+        function calculateRoute(start, end) {
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+            directionsService = new google.maps.DirectionsService();
+            directionsService.route(request, function(result, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(result);
+                }
+            });
+        }
+        function initMap() {
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 10.523900, lng: 76.212250 },
+                zoom: 9
+            });
+            directionsDisplay.setMap(map);
+            CalculateDistance();
+            //var infoWindow = new google.maps.InfoWindow;
+            //if (navigator.geolocation) {
+            //    navigator.geolocation.getCurrentPosition(function (position) {
+            //        //debugger;
+            //        var pos = {
+
+            //            lat: position.coords.latitude,
+            //            lng: position.coords.longitude
+            //        };
+            //        var marker = new google.maps.Marker({
+            //            title: 'Your location',
+            //            map: map,
+            //            position: pos
+            //        });
+            //        map.setCenter(pos);
+            //        google.maps.event.addListener(marker, 'click', function () {
+            //            infowindow.setContent(marker.title);
+            //            infowindow.open(map, marker);
+            //        })
+            //    });
+            //}
+            directionsDisplay.setMap(map);
+            CalculateDistance();
+        }
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                                  'Error: The Geolocation service failed.' :
+                                  'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+
+    </script >
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNKM7U-FRBfd6BfD3UwfRQRRpSgu2TsiU&callback=initMap" async="" defer="defer" type="text/javascript" > </script >
+<div>
+    <div id="results">
+    </div>
+    <div class="navigate">
+        <a href="https://www.google.com/maps/dir//"SeekOrigin>Navigate</a>
+    </div>
+</div>
