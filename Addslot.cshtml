@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Addslot";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .form{
+           position:absolute;
+           top:160px;
+           left:580px;
+        }
+        .slot-box h2{
+                 font-family: 'Exo 2', sans-serif;
+                 text-align:center;
+                 letter-spacing:3px;
+                 font-size:40px;
+            }
+        .btn {
+               width:100%;  
+                
+            }
+    </style>
+    </head>
+<body>
+    <form action="/admin/Addslot" method="post">
+        <div class="form">
+            <div class="slot-box">
+                <h2>Addslot</h2><br />
+            </div>
+            <div class="text-box">
+                <input type="text" class="form-control" placeholder="Slot Name" name="slot" value="" /><br />
+            </div>
+            <div>
+                <input type="submit" class="btn" value="Add Slot" />
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-10">
+                    <label class="label-success">
+                        @ViewBag.s
+                    </label>
+                    <label class="label-danger">
+                        @ViewBag.f
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+

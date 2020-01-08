@@ -1,0 +1,59 @@
+﻿@model SafeSpot.Model.tb_log
+
+@{
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>profile</h2>
+@using SafeSpot.Model;
+@{
+    db_SafeSpotEntities6 db = new db_SafeSpotEntities6();
+
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    String id = ViewBag.userid;
+
+    var reg = db.tb_log.Where(t => t.username == id).FirstOrDefault();
+
+
+}
+
+<div class="container">
+    <div class="margintop">
+        <table align="center">
+            
+            <tr>
+                <td class="td1">
+                    <label>Username:</label>
+                </td>
+                <td>
+                    @*@{
+                            Int32 username_id = Convert.ToInt32(reg.id);
+                            tb_reg getusername = db.tb_reg.Where(k => k.id == username_id).FirstOrDefault();
+
+                        }*@
+                    <label>@reg.username</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1">
+                    <label>Password:</label>
+                </td>
+                <td>
+                    <label>@reg.password</label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("Editprofile","admin")'" class="btn btn-default">Edit Profile</button>
+                </td>
+            </tr>
+        </table>
+        <div>
+            @Html.ActionLink("Back to Home", "Adminome")
+        </div>
+    </div>
+</div>
+

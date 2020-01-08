@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Adminhome";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@*<h2>Adminhome</h2>*@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Userpage</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        .Agentreg{
+            display: inline-block;
+            margin:20px;
+            position:absolute;
+            /*width:100%;
+            height:auto;
+            max-width:8px;
+            max-height:4px;*/
+            top:135px;
+            left:50px;
+        }
+        .Addslot{
+            display: inline-block;
+            margin:20px;
+            position:absolute;
+            top:168px;
+            left:490px;
+        }
+        .Allotment{
+            display: inline-block;
+            margin:20px;
+            position:absolute;
+            top:168px;
+            right:190px;
+        }
+        .Agentreg figure:hover, .Allotment figure:hover, .Addslot figure:hover{
+            -ms-transform: scale(1.5); /* IE 9 */
+            -webkit-transform: scale(1.5); /* Safari 3-8 */
+            transform: scale(1.1);
+             transition: transform .8s;
+             width: 10px;
+             height: 10px;
+             margin: 0 auto;  
+        }
+    </style>
+    </head>
+<body>
+    <div class="Agentreg">
+        <figure>
+            <a href="Agentreg"><img width="178" height="178" src="~/Images/istockphoto-1097032790-1024x1024.jpg" /></a>
+            <p><b> Agent Registration</b></p>
+        </figure>
+    </div>
+    <div class="Addslot">
+        <figure>
+            <a href="Addslot"> <img width="190" height="190" src="~/Images/500_F_232145317_apA8OiP0eapDFDPNXrNR6t8nisp5Zky0.jpg" /></a>
+            <p><b> Add Slot</b></p>
+        </figure>
+    </div>
+    <div class="Allotment">
+        <figure>
+            <a href="Addagentslot"> <img width="180" height="180" src="~/Images/Link_Connection_Share_Connection_Chain_Social-512.png" /></a>
+            <p><b> Allotment</b></p>
+        </figure>
+    </div>
+</body>
+</html>
