@@ -1,0 +1,91 @@
+﻿@model SafeSpot.Model.tb_agent
+
+@{
+    ViewBag.Title = "Addagent";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    SafeSpot.Model.db_SafeSpotEntities6 db = new SafeSpot.Model.db_SafeSpotEntities6();
+    var Getagent = db.tb_agent.ToList();
+    var Getslot = db.tb_parkingslot.ToList();
+
+}
+
+@*<h2>Add agent & slot</h2>*@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .form{
+             position:absolute;
+           top:160px;
+           left:550px;
+        }
+        .add-box h2{
+                 font-family: 'Exo 2', sans-serif;
+                 text-align:center;
+                 letter-spacing:3px;
+                 font-size:40px;
+            }
+        .btn {
+               width:100%;  
+                
+            }
+    </style>
+</head>
+<body>
+    <form action="/admin/Addagentslot" method="post">
+        <div class="form">
+            <div class="add-box">
+                <h2>Add Agent & Slot</h2><br />
+            </div>
+            <div>
+                <select id="name" name="sname">
+                    <option value="0">Slots</option>
+                    @foreach (var i in Getslot)
+                    {
+                        <option value="@i.slot_name">@i.slot_name</option>
+                    }
+                </select><br /><br />
+            </div>
+            <div class="text-box">
+                <input type="text" class="form-control" placeholder="Lattitude" name="lat" /><br />
+            </div>
+            <div class="text-box">
+                <input type="text" class="form-control" placeholder="Longitude" name="long" /><br />
+            </div>
+            <div>
+                <select id="name" name="aname">
+                    <option value="0">Agents</option>
+                    @foreach (var i in Getagent)
+                    {
+                        <option value="@i.username">@i.username</option>
+                    }
+                </select><br /><br />
+            </div>
+            <div>
+                <input type="submit" class="btn" value="Add" />
+           </div>
+            
+            <div>
+                <label class="label-success">
+                    @ViewBag.s
+                </label>
+                <label class="label-danger">
+                    @ViewBag.f
+                </label>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+
