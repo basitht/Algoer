@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SafeSpot.Model.tb_freeslot>
+
+@{
+    ViewBag.Title = "Viewslot";
+    Layout = "~/Views/Shared/_LayoutAgent.cshtml";
+}
+
+<h2>Viewslot</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.agentinfree_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sllotinfree_name)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Lat_infree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Long_infree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.car_freeslot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bike_freeslot)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.agentinfree_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sllotinfree_name)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Lat_infree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Long_infree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.car_freeslot)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bike_freeslot)
+        </td>*@
+        <td>
+            @Html.ActionLink("Back To Home", "Agenthome") 
+            @*@Html.ActionLink("Details", "Details", new { id=item.freeslot_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.freeslot_id })*@
+        </td>
+    </tr>
+}
+
+</table>

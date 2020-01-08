@@ -1,0 +1,86 @@
+﻿@model SafeSpot.Model.tb_agent
+
+@{
+    ViewBag.Title = "Editprofile";
+    Layout = "~/Views/Shared/_LayoutAgent.cshtml";
+}
+
+<h2>Editprofile</h2>
+@using SafeSpot.Model;
+@{
+    db_SafeSpotEntities6 db = new db_SafeSpotEntities6();
+    ViewBag.Title = "Editprofile";
+    Layout = "~/Views/Shared/_LayoutAgent.cshtml";
+    String id = Session["username"].ToString();
+    var getagent = db.tb_agent.Where(t => t.username == id).FirstOrDefault();
+}
+
+<div class="container">
+    <div></div>
+    <div class="margintop">
+        <form id="form1" action="/agent/Editprofile" method="post">
+            <table align="center">
+                <tr>
+                    <td class="td1">
+                        <label>Name:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="name" name="aname" value="@getagent.agent_name" />
+                    </td>
+                </tr>
+                @*<tr>
+                    <td class="td1">
+                        <label>Slot Name:</label>
+                    </td>
+                    <td>
+                        <label>@getagent.slot_name</label>
+                    </td>
+                </tr>*@
+                <tr>
+                    <td class="td1">
+                        <label>Mail Id:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="mail" name="mail" value="@getagent.gmail" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="td1">
+                        <label>Phone No:</label>
+                    </td>
+                    <td>
+                        <input type="text" id="phone" name="phone" value="@getagent.phone_no" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td1">
+                        <label>Username:</label>
+                    </td>
+                    <td>
+                        <label>@getagent.username</label>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="td1">
+                        <label>Password:</label>
+                    </td>
+                    <td>
+                        <label>@getagent.password</label>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" id="btnsubmit" name="btnsubmit" value="Done" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+

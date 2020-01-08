@@ -1,0 +1,90 @@
+﻿@model SafeSpot.Model.tb_agent
+
+@{
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/_LayoutAgent.cshtml";
+}
+
+<h2>profile</h2>
+@using SafeSpot.Model;
+@{
+    db_SafeSpotEntities6 db = new db_SafeSpotEntities6();
+
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/_LayoutAgent.cshtml";
+    String id = ViewBag.userid;
+
+    var getagent = db.tb_agent.Where(t => t.username == id).FirstOrDefault();
+
+
+}
+
+<div class="container">
+    <div class="margintop">
+        <table align="center">
+            <tr>
+                <td class="td1">
+                    <label>Name:</label>
+                </td>
+                <td>
+                    <label>@getagent.agent_name</label>
+                </td>
+            </tr>
+            @*<tr>
+                <td class="td1">
+                    <label>Slot Name:</label>
+                </td>
+                <td>
+                    <label>@getagent.slot_name</label>
+                </td>
+            </tr>*@
+                <tr>
+                <td class="td1">
+                    <label>Mail Id:</label>
+                </td>
+                <td>
+                    <label>@getagent.gmail</label>
+                </td>
+            <tr>
+            <tr>
+                <td class="td1">
+                    <label>Phone No:</label>
+                </td>
+                <td>
+                    <label>@getagent.phone_no</label>
+                </td>
+            <tr>
+                <td class="td1">
+                    <label>Username:</label>
+                </td>
+                <td>
+                    @*@{
+                    Int32 username_id = Convert.ToInt32(reg.id);
+                    tb_reg getusername = db.tb_reg.Where(k => k.id == username_id).FirstOrDefault();
+
+                }*@
+                    <label>@getagent.username</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="td1">
+                    <label>Password:</label>
+                </td>
+                <td>
+                    <label>@getagent.password</label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="button" onclick="location.href='@Url.Action("Editprofile","agent")'" class="btn btn-default">Edit Profile</button>
+                </td>
+            </tr>
+        </table>
+        <div>
+            @Html.ActionLink("Back to Home", "Agenthome")
+        </div>
+    </div>
+</div>
+
+
